@@ -6,12 +6,16 @@ Summary(pl.UTF-8):	Biblioteki klienckie dla GGZ
 Name:		ggz-client-libs
 Version:	0.0.14
 Release:	0.1
-License:	GPL v2.1+
+License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.belnet.be/packages/ggzgamingzone/ggz/0.0.14/%{name}-%{version}.tar.gz
 # Source0-md5:	efe325665fc745efe34d59dd9dea4284
 URL:		http://www.ggzgamingzone.org/
+BuildRequires:	autoconf >= 2.50
+BuildRequires:	automake
+BuildRequires:	expat-devel >= 1.95
 BuildRequires:	libggz-devel >= 0.0.14
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -27,6 +31,8 @@ Summary:	Header files for ggz-client-lib library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki ggz-client-lib
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	expat-devel >= 1.95
+Requires:	libggz-devel >= 0.0.14
 
 %description devel
 Header files for ggz-client-lib library.
@@ -51,7 +57,7 @@ Statyczna biblioteka ggz-client-lib.
 
 %build
 %{__libtoolize}
-%{__aclocal} -I m4/ -I m4/ggz/
+%{__aclocal} -I m4 -I m4/ggz
 %{__autoconf}
 %{__autoheader}
 %{__automake}
