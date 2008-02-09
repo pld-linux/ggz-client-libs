@@ -75,9 +75,13 @@ Statyczna biblioteka ggz-client-lib.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# Create ggz.modules
+echo "[Games]" > $RPM_BUILD_ROOT%{_sysconfdir}/ggz.modules
 
 %find_lang %{name} --all-name
 
@@ -90,6 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS QuickStart.GGZ README*
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ggz.modules
 %attr(755,root,root) %{_bindir}/ggz
 %attr(755,root,root) %{_bindir}/ggz-config
 %attr(755,root,root) %{_bindir}/ggz-wrapper
