@@ -1,11 +1,20 @@
 # TODO:
-# - there is some man pages need to be checked, also need check what is ggz.merge.menu, ggz.menu in /etc and ggzwrap in libdir
-
+# warning: Installed (but unpackaged) file(s) found:
+#	/etc/xdg/menus/applications-merged/ggz.merge.menu
+#	/etc/xdg/menus/ggz.menu
+#	/usr/share/desktop-directories/ggz-games.directory
+#	/usr/share/desktop-directories/ggz.directory
+#
+# These files are to show in WM menu GGZ clients / games, which have special
+# Category entry in desktop files - X-GGZ or X-GGZ-Games
+#
+# - create subpackage for them (-menus?)
+#
 Summary:	GGZ client libraries
 Summary(pl.UTF-8):	Biblioteki klienckie dla GGZ
 Name:		ggz-client-libs
 Version:	0.0.14
-Release:	0.1
+Release:	0.9
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.belnet.be/packages/ggzgamingzone/ggz/0.0.14/%{name}-%{version}.tar.gz
@@ -81,17 +90,34 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS QuickStart.GGZ README*
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%{_mandir}/man6/*.6*
+%attr(755,root,root) %{_bindir}/ggz
+%attr(755,root,root) %{_bindir}/ggz-config
+%attr(755,root,root) %{_bindir}/ggz-wrapper
+%dir %{_libdir}/ggz
+%attr(755,root,root) %{_libdir}/ggz/ggzwrap
+%attr(755,root,root) %{_libdir}/libggzcore.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libggzcore.so.9
+%attr(755,root,root) %{_libdir}/libggzmod.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libggzmod.so.4
+%{_mandir}/man1/ggzwrap.1*
+%{_mandir}/man5/ggz.modules.5*
+%{_mandir}/man6/ggz-config.6*
+%{_mandir}/man6/ggz-wrapper.6*
+%{_mandir}/man6/ggz.6*
+%{_mandir}/man7/ggz.7*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_includedir}/*.h
-%{_mandir}/man3/*.3*
+%attr(755,root,root) %{_libdir}/libggzcore.so
+%attr(755,root,root) %{_libdir}/libggzmod.so
+%{_libdir}/libggzcore.la
+%{_libdir}/libggzmod.la
+%{_includedir}/ggzcore.h
+%{_includedir}/ggzmod.h
+%{_mandir}/man3/ggzcore_h.3*
+%{_mandir}/man3/ggzmod_h.3*
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libggzcore.a
+%{_libdir}/libggzmod.a
