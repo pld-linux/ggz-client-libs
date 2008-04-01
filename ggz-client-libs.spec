@@ -13,12 +13,12 @@
 Summary:	GGZ client libraries
 Summary(pl.UTF-8):	Biblioteki klienckie dla GGZ
 Name:		ggz-client-libs
-Version:	0.0.14
+Version:	0.0.14.1
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.belnet.be/packages/ggzgamingzone/ggz/0.0.14/%{name}-%{version}.tar.gz
-# Source0-md5:	efe325665fc745efe34d59dd9dea4284
+Source0:	http://ftp.belnet.be/packages/ggzgamingzone/ggz/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	299eaa93721b1d867b5bf7dc6ac764b0
 URL:		http://www.ggzgamingzone.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
