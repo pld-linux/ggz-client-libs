@@ -17,7 +17,7 @@ Version:	0.0.14.1
 Release:	3
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.belnet.be/packages/ggzgamingzone/ggz/%{version}/%{name}-%{version}.tar.gz
+Source0:	http://mirrors.dotsrc.org/ggzgamingzone/ggz/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	299eaa93721b1d867b5bf7dc6ac764b0
 URL:		http://www.ggzgamingzone.org/
 BuildRequires:	autoconf >= 2.50
