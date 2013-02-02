@@ -14,7 +14,7 @@ Summary:	GGZ client libraries
 Summary(pl.UTF-8):	Biblioteki klienckie dla GGZ
 Name:		ggz-client-libs
 Version:	0.0.14.1
-Release:	3
+Release:	4
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://mirrors.dotsrc.org/ggzgamingzone/ggz/%{version}/%{name}-%{version}.tar.gz
@@ -75,13 +75,15 @@ Statyczna biblioteka ggz-client-lib.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 # Create ggz.modules
+install -d $RPM_BUILD_ROOT%{_sysconfdir}
 echo "[Games]" > $RPM_BUILD_ROOT%{_sysconfdir}/ggz.modules
+# directory for ggz.modules .dsc pieces
+install -d $RPM_BUILD_ROOT%{_datadir}/ggz/ggz-config
 
 %find_lang %{name} --all-name
 
@@ -93,7 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS QuickStart.GGZ README*
+%doc AUTHORS ChangeLog NEWS QuickStart.GGZ README* ggz-config/readme.ggzconfig
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ggz.modules
 %attr(755,root,root) %{_bindir}/ggz
 %attr(755,root,root) %{_bindir}/ggz-config
@@ -104,6 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libggzcore.so.9
 %attr(755,root,root) %{_libdir}/libggzmod.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libggzmod.so.4
+%dir %{_datadir}/ggz/ggz-config
 %{_mandir}/man1/ggzwrap.1*
 %{_mandir}/man5/ggz.modules.5*
 %{_mandir}/man6/ggz-config.6*
